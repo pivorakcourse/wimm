@@ -1,0 +1,29 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: disable
+  Exclude:
+    - bin/*
+    - vendor/**/*
+    - db/schema.rb
+    - db/seeds.rb
+    - db/migrate/*
+    - node_modules/**/*
+    - Guardfile
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/*'
+    - 'spec/**/*'
+    - 'spec/***/**/*'
+    - 'spec/****/***/**/*'
+    - 'spec/*****/****/***/*'
