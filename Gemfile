@@ -21,6 +21,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop', '~> 0.86.0', require: false
+  gem 'pry-rails'
 end
 
 group :development do
