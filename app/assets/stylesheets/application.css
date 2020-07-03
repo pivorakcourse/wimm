@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.small-top-pading {
+  padding-top: 0.4em;
+}
