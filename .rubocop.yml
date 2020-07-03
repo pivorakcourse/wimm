@@ -36,5 +36,5 @@ Metrics/BlockLength:
   ExcludedMethods: [
     'describe', 'xdescribe', 'context', 'xcontext', 'it', 'xit', 'get', 'post', 'put', 'FactoryBot.define',
     'factory', 'let', 'before', 'after', 'configure', 'shared_examples',
-    'resource', 'aggregate_failures', 'draw', 'collection', 'example'
+    'resource', 'aggregate_failures', 'draw', 'collection', 'example', 'feature'
   ]
