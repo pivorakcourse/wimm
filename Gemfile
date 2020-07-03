@@ -17,8 +17,10 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
+  gem 'factory_bot_rails', '~> 6.0'
   gem 'guard-rspec', require: false
   gem 'launchy'
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop', '~> 0.86.0', require: false
   gem 'pry-rails'
