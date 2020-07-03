@@ -10,6 +10,11 @@
   </head>
 
   <body class="container">
+    <% if user_signed_in? %>
+      <%= render 'dashboard/navigation' %>
+    <% else %>
+      <%= render 'home/navigation' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

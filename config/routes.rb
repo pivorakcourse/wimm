@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   scope 'app' do
-    get '/', to: 'dashboard#index'
+    get '/', to: 'dashboard#index', as: 'app_dashboard'
   end
 end

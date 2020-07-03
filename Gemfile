@@ -26,6 +26,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.2'
+  gem 'rubocop-rails', '~> 2.6'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
