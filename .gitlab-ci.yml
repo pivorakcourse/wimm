@@ -1,43 +1,88 @@
-image: "ruby:2.6.5"
-
-before_script:
-  - apt-get update -qq && apt-get install -y -qq postgresql postgresql-contrib libpq-dev cmake
-  - ruby -v
-  - which ruby
-
-cache:
-  paths:
-    - vendor/bundle
-
-services:
-  - postgres:latest
-
-variables:
-  BUNDLE_PATH: vendor/bundle
-  DISABLE_SPRING: 1
-  RAILS_ENV: test
-  SECRET_KEY_BASE: 7d168489ca5e6c2543e94bd8f1477754d26ca6e4d93a646d06e502a68583c86a291a4718b127e2a8b3c3eaddb9ff0aa05f965693cc3c104c69cbf69ed74da5ed
-  POSTGRES_DB: test_db
-  POSTGRES_USER: runner
-  POSTGRES_PASSWORD: ""
-
 stages:
   - lint
+  - build
   - test
 
-rubocop:
-  stage: lint
-  script:
-  - gem install rubocop -v 0.86
-  - rubocop
+.preparation:
+  image: "ruby:2.6.5"
+  cache:
+    key: wimm
+    paths:
+      - apt-cache/
+      - vendor/bundle
+      - vendor/ruby
+      - node_modules
+    policy: pull
 
-specs:
-  stage: test
-  script:
-    - gem install bundler
-    - bundle check || bundle install
+.build:
+  image: "ruby:2.6.5"
+  cache:
+    key: ${CI_PROJECT_PATH_SLUG}
+    paths:
+      - apt-cache/
+      - vendor/bundle
+      - vendor/ruby
+      - node_modules
+    policy: pull
+  services:
+    - "postgres:12.2-alpine"
+    - "selenium/standalone-chrome:latest"
+  variables:
+    POSTGRES_DB: test_db
+    POSTGRES_USER: runner
+    POSTGRES_PASSWORD: ""
+    POSTGRES_POOL: 5
+    POSTGRES_HOST: postgres
+    POSTGRES_HOST_AUTH_METHOD: trust
+    RAILS_ENV: test
+    DISABLE_SPRING: 1
+    BUNDLE_PATH: vendor/bundle
+    SELENIUM_URL: "http://selenium__standalone-chrome:4444/wd/hub"
+    SECRET_KEY_BASE: 7d168489ca5e6c2543e94bd8f1477754d26ca06e502a68583c86a291a4718b127e2a8b3c3eaddb9ff0aa05f965693cc3c104c69cbf69ed74da5ed
+  before_script:
     - cp config/database.yml.ci config/database.yml
-    - RAILS_ENV=test bundle exec rake db:create
-    - RAILS_ENV=test bundle exec rake db:schema:load
-    - RAILS_ENV=test bundle exec rspec
+    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+    - apt update -qq && apt -o dir::cache::archives="$APT_CACHE_DIR" install -yqq nodejs
+    - apt install -y -qq postgresql postgresql-client postgresql-contrib libpq-dev cmake nodejs libgmp-dev -yqq
+    - wget -q -O - https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    - echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+    - apt update -yq
+    - apt install -y yarn
+    - gem install bundler --no-document
+    - bundle check || bundle install  --jobs $(nproc) "${FLAGS[@]}" --path=vendor
+    - yarn install
+    - RAILS_ENV=test bundle exec rake db:create --trace
+    - RAILS_ENV=test bundle exec rake db:schema:load --trace
+    - RAILS_ENV=test bundle exec rails assets:precompile
 
+build:
+  extends: .build
+  stage: build
+  cache:
+    policy: pull-push
+  script:
+    - ruby -v
+    - which ruby
+    - node -v
+    - yarn --version
+
+rubocop:
+  extends: .preparation
+  stage: lint
+  cache:
+    policy: pull-push
+  script:
+    - gem install rubocop -v 0.86.0
+    - rubocop
+
+rspec:
+  extends: .build
+  stage: test
+  cache:
+    policy: pull-push
+  artifacts:
+    name: coverage
+    paths:
+      - coverage/
+  script:
+    - RAILS_ENV=test bundle exec rspec

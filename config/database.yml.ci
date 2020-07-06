@@ -1,9 +1,10 @@
 test:
-  adapter: postgresql
+  adapter:  postgresql
   encoding: unicode
-  pool: 5
-  timeout: 5000
-  host: postgres
-  username: runner
-  password: ""
-  database: test_db
+  pool:     <%= ENV['POSTGRES_POOL'] || 5 %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host:     <%= ENV['POSTGRES_HOST'] %>
+  port:     5432
+  timeout:  5000
+  database: <%= ENV['POSTGRES_DB'] %>
