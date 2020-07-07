@@ -22,7 +22,6 @@ feature 'Registration flow: ' do
 
   scenario 'User is signing up without filling required information' do
     visit('/users/sign_up')
-
     click_button 'Register'
 
     expect(page).to have_content "Email can't be blank"
@@ -38,12 +37,10 @@ feature 'Registration flow: ' do
     end
 
     click_button 'Register'
-
     visit('/app')
-
     click_link 'Logout'
-
     visit('/users/sign_up')
+
     within('#new_user') do
       fill_in 'Email', with: user_attr[:email]
       fill_in 'Password', with: '123456'

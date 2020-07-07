@@ -20,10 +20,6 @@ Layout/HashAlignment:
   EnforcedColonStyle: table
   EnforcedHashRocketStyle: table
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
-
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/*'
@@ -33,6 +29,8 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/*****/****/***/*'
 
 Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
   ExcludedMethods: [
     'describe', 'xdescribe', 'context', 'xcontext', 'it', 'xit', 'get', 'post', 'put', 'FactoryBot.define',
     'factory', 'let', 'before', 'after', 'configure', 'shared_examples',

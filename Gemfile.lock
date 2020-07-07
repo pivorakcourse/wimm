@@ -236,6 +236,8 @@ GEM
       sprockets-rails
       tilt
     shellany (0.0.1)
+    shoulda-matchers (4.3.0)
+      activesupport (>= 4.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -289,6 +291,7 @@ DEPENDENCIES
   rubocop (~> 0.86.0)
   rubocop-rails (~> 2.6)
   sass-rails (>= 6)
+  shoulda-matchers (~> 4.3)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
