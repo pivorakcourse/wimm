@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   scope 'app' do
     get '/', to: 'dashboard#index', as: 'app_dashboard'
+    resources :accounts
   end
 end
