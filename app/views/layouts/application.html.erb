@@ -15,6 +15,9 @@
     <% else %>
       <%= render 'home/navigation' %>
     <% end %>
+    <% flash.each do |key, value| %>
+      <div><%= value %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,25 @@
+<div class="row">
+ <div class="two columns">
+     <%= link_to "Add account", new_account_path, class: "button button secondary" %>
+  </div>
+</div>
+<div class="row"> 
+  <div class="two columns">
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.accounts.each do |account| %>
+          <tr>
+            <td><%= account.name %></td>
+            <td><%= account.balance %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
