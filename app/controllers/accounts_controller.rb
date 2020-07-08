@@ -2,7 +2,7 @@
 
 class AccountsController < ApplicationController
   def index
-    @accounts = current_user.accounts
+    @accounts = Account.where(user_id: current_user.id)
   end
 
   def new
@@ -15,6 +15,20 @@ class AccountsController < ApplicationController
       redirect_to accounts_path, notice: 'Account has been created'
     else
       flash.now[:error] = 'Account not created'
+      render :new
+    end
+  end
+
+  def edit
+    @account = current_user.accounts.find(params[:id])
+  end
+
+  def update
+    @account = current_user.accounts.find(params[:id])
+    if @account.update(account_params)
+      redirect_to accounts_path, notice: 'Account has been updated'
+    else
+      flash.now[:error] = 'Account not updated'
       render :new
     end
   end
