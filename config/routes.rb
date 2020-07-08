@@ -5,10 +5,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :categories, except: %i[show destroy]
-
   scope 'app' do
     get '/', to: 'dashboard#index', as: 'app_dashboard'
     resources :accounts
+    resources :categories, except: %i[show destroy]
   end
 end
