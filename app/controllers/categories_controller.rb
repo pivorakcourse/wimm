@@ -2,7 +2,7 @@
 
 class CategoriesController < ApplicationController
   def index
-    @categories = current_user.categories
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def new
@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = current_user.categories.find(params.require(:id))
+    @category = current_user.categories.find(params[:id])
   end
 
   def create
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = current_user.categories.find(params.require(:id))
+    @category = current_user.categories.find(params[:id])
     if @category.update(category_params)
       redirect_to categories_path
     else
