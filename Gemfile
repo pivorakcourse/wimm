@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'listen', '~> 3.2'
   gem 'rubocop-rails', '~> 2.6'
   gem 'spring'
