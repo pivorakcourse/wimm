@@ -1,6 +1,8 @@
-<%= link_to 'Dashboard', app_dashboard_path %>
-<%= link_to 'Accounts', accounts_path %>
-<%= link_to 'Records' %>
-<%= link_to 'Categories', categories_path %>
-<%= link_to 'Reports' %>
-<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<div class='navigation'>
+  <%= link_to 'Dashboard', app_dashboard_path %>
+  <%= link_to 'Accounts', accounts_path %>
+  <%= link_to 'Records', records_path %>
+  <%= link_to 'Categories', categories_path %>
+  <%= link_to 'Reports' %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+</div>
