@@ -35,6 +35,16 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    @account = current_user.accounts.find(params[:id])
+    if RemoveAccountPolicy.new(@account).allowed?
+      @account.destroy
+      redirect_to accounts_path, notice: 'Account has been deleted'
+    else
+      redirect_to accounts_path, notice: 'Account not deleted'
+    end
+  end
+
   private
 
   def account_params
