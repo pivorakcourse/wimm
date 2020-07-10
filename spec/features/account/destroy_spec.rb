@@ -8,11 +8,10 @@ RSpec.describe 'Account' do
   let!(:category) { create(:category, user_id: user.id) }
   let(:record)    { Record.create(amount: 100, category_id: category.id, account_id: account.id, user_id: user.id) }
 
-  before {  visit accounts_path }
+  before { visit accounts_path }
 
   context 'Zero record account' do
     scenario 'Button Delete visible for empty records account' do
-
       expect(page).to have_link('Delete')
     end
 
@@ -23,7 +22,7 @@ RSpec.describe 'Account' do
       expect(page).to have_content('Account has been deleted')
     end
   end
-  
+
   context 'Account with records' do
     scenario 'Button Delete invisible for account with records' do
       record
