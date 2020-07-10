@@ -18,6 +18,9 @@
             <td><%= account.name %></td>
             <td><%= account.balance %></td>
             <td> <%= link_to "Edit", edit_account_path(account), class: "button button secondary" %></td>
+            <td> <%= link_to "Delete", account_path(account), class: "button button secondary", method: :delete, 
+                      data: { confirm: 'Are you sure?' } %>
+            </td>
           </tr>
         <% end %>
       </tbody>
