@@ -18,6 +18,7 @@
             <td><%= account.name %></td>
             <td><%= account.balance %></td>
             <td> <%= link_to "Edit", edit_account_path(account), class: "button button secondary" %></td>
+            <td> <%= delete_account_button(account) %></td>
           </tr>
         <% end %>
       </tbody>
