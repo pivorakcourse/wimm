@@ -2,9 +2,8 @@
 
 module AuthHelper
   def assume_logged_user(user = nil)
-    user ||= user || User.create(email: 'example@example.com', password: 'sEcReT321')
-
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    user ||= User.create!(email: 'test@example.com', password: 'f4k3p455w0rd')
+    login_as(user, scope: :user)
     user
   end
 end
