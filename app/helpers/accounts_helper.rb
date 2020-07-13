@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DestroyAccountHelper
+module AccountsHelper
   def delete_account_button(account)
     return unless RemoveAccountPolicy.new(account).allowed?
 
