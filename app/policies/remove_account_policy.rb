@@ -8,6 +8,6 @@ class RemoveAccountPolicy
   end
 
   def allowed?
-    @account.records.count.zero?
+    account.records.count.zero?
   end
 end
