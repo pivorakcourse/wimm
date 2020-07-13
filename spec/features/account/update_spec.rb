@@ -7,7 +7,7 @@ RSpec.describe 'Account' do
     let(:valid_params) { { name: 'TestAccount' } }
     let(:invalid_params) { { name: 'T' } }
     let!(:user) { assume_logged_user }
-    let!(:account) { Account.create(name: 'TestAccount', user_id: user.id) }
+    let!(:account) { create(:account, user_id: user.id) }
     before { visit accounts_path }
 
     scenario 'Allows access to page for update of account' do
