@@ -11,12 +11,12 @@ RSpec.describe 'Account' do
   before { visit accounts_path }
 
   context 'Zero record account' do
-    scenario 'Button Delete visible for empty records account' do
-      expect(page).to have_link('Delete')
-    end
-
     scenario 'Account disappear after click Delete link' do
-      click_link 'Delete'
+      expect(page).to have_link('Delete')
+
+      expect do
+        click_link 'Delete'
+      end.to change { Account.count }.from(1).to(0)
 
       expect(page).not_to have_content(account.name)
       expect(page).to have_content('Account has been deleted')
