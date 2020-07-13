@@ -3,9 +3,11 @@
   <%= link_to "Add category", new_category_path, class: "button button secondary" %>
   <% @categories.each do |category| %>
       <ul><%= category.name %><br>
-        <%=link_to 'Edit', edit_category_path(category) %>
+        <%=link_to 'Edit', edit_category_path(category), 
+          class: "button button secondary" 
+        %>
+        <%= delete_category_button(category) %>
       </ul>
-
   <% end %>  
 </div>
 

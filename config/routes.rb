@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   scope 'app' do
     get '/', to: 'dashboard#index', as: 'app_dashboard'
-    resources :categories, except: %i[show destroy]
+    resources :categories, except: %i[show]
     resources :accounts
     resources :records
   end
