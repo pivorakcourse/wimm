@@ -13,7 +13,7 @@ class RecordsController < ApplicationController
     if @record.save
       redirect_to app_dashboard_path, notice: 'Record was successfully created.'
     else
-      redirect_to app_dashboard_path, notice: 'Record can`t be blank and record can`t be zero'
+      redirect_to app_dashboard_path, notice: 'Record can`t be string and record can`t be zero'
     end
   end
 
