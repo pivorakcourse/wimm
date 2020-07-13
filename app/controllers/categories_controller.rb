@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_user.categories.build(category_params)
+
     if @category.save
       redirect_to categories_path
     else
@@ -26,10 +27,22 @@ class CategoriesController < ApplicationController
 
   def update
     @category = current_user.categories.find(params[:id])
+
     if @category.update(category_params)
       redirect_to categories_path
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @category = current_user.categories.find(params[:id])
+
+    if RemoveCategoryPolicy.new(@category).allowed?
+      @category.destroy
+      redirect_to categories_path, notice: 'Category has been deleted'
+    else
+      redirect_to categories_path, notice: 'Category not deleted'
     end
   end
 
