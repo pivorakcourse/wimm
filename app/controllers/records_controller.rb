@@ -11,9 +11,9 @@ class RecordsController < ApplicationController
     @record = current_user.records.build(record_params)
 
     if @record.save
-      redirect_to app_dashboard_path, notice: 'Record was successfully created.'
+      redirect_to user_root_path, notice: 'Record was successfully created.'
     else
-      redirect_to app_dashboard_path, notice: 'Record can`t be string and record can`t be zero'
+      redirect_to user_root_path, notice: 'Record can`t be string and record can`t be zero'
     end
   end
 

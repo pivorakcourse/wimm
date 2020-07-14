@@ -1,7 +1,7 @@
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
+
   <div class="row">
     <div class="three columns small-top-pading">
       <%= f.label :email %>
@@ -9,7 +9,7 @@
 
     <div class="three columns">
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>  
+    </div>
   </div>
 
 
@@ -20,13 +20,13 @@
 
     <div class="three columns">
       <%= f.password_field :password, autocomplete: "new-password" %>
-    </div> 
+    </div>
   </div>
 
   <div class="row">
     <div class="three columns"> ‎</div>
     <div class="three columns">
-      <%= f.submit "Enter" %>  
+      <%= f.submit "Enter" %>
     </div>
   </div>
 <% end %>

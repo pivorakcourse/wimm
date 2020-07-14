@@ -16,8 +16,7 @@ feature 'Registration flow: ' do
 
     click_button 'Register'
 
-    expect(page).to have_content('Home')
-    expect(current_path).to eql('/')
+    expect(page).to have_current_path '/app'
   end
 
   scenario 'User is signing up without filling required information' do
