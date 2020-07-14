@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   scope 'app' do
-    get '/', to: 'dashboard#index', as: 'app_dashboard'
+    get '/', to: 'dashboard#index', as: 'user_root'
     resources :categories, except: %i[show]
     resources :accounts
     resources :records

@@ -12,13 +12,13 @@ feature 'Create record: ' do
     let!(:string_amount) { 'Fake string' }
 
     scenario 'Page have content amount' do
-      visit app_dashboard_path
+      visit user_root_path
 
       expect(page).to have_content('Amount')
     end
 
     scenario 'Create record with zero amount' do
-      visit app_dashboard_path
+      visit user_root_path
       fill_in 'Amount', with: incorrect_amount
       click_button 'Submit'
 
@@ -26,7 +26,7 @@ feature 'Create record: ' do
     end
 
     scenario 'Create record with string amount' do
-      visit app_dashboard_path
+      visit user_root_path
       fill_in 'Amount', with: string_amount
       click_button 'Submit'
 
@@ -34,7 +34,7 @@ feature 'Create record: ' do
     end
 
     scenario 'Create record with correct amount' do
-      visit app_dashboard_path
+      visit user_root_path
 
       fill_in 'record_amount', with: correct_amount
       click_button 'Submit'

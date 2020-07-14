@@ -16,8 +16,7 @@ feature 'Authorization flow: ' do
 
     click_button 'Enter'
 
-    expect(page).to have_content 'Home'
-    expect(current_path).to eql('/')
+    expect(page).to have_current_path '/app'
   end
 
   scenario 'Signing in as unregistered user' do
