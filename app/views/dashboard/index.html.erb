@@ -1,22 +1,32 @@
 <h2>WhereIsMyMoney</h2>
-  <%= form_with(model: @record, local: true, url: records_path) do |form| %>
 
-    <tr class="field">
-      <%= form.label :amount %>
-      <%= form.text_field :amount, required: true %>
-    </tr>
 
-    <tr class="field">
-      <%= form.label :account_id %>
-      <%= select("record", :account_id, @accounts.collect {|a| [ a.name, a.id ] }) %>
-    </tr>
+<div class="row">
+  <div class="one-half column">
+    My accounts
+  </div>
 
-    <tr class="field">
-      <%= form.label :category_id %>
-      <%= select("record", :category_id, @categories.collect {|c| [ c.name, c.id ] }) %>
-    </tr>
+  <div class="one-half column">
+    <%= form_with(model: @record, local: true, url: records_path) do |form| %>
 
-    <tr class="actions">
-      грн <%= form.submit 'Submit' %>
-    </tr>
-  <% end %>
+      <tr class="field">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, required: true %>
+      </tr>
+
+      <tr class="field">
+        <%= form.label :account_id %>
+        <%= select("record", :account_id, @accounts.collect {|a| [ a.name, a.id ] }) %>
+      </tr>
+
+      <tr class="field">
+        <%= form.label :category_id %>
+        <%= select("record", :category_id, @categories.collect {|c| [ c.name, c.id ] }) %>
+      </tr>
+
+      <tr class="actions">
+        грн <%= form.submit 'Submit' %>
+      </tr>
+    <% end %>
+  </div>
+</div>
