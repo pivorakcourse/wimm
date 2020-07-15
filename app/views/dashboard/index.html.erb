@@ -1,13 +1,22 @@
 <div class="row">
   <div class="one-half column">
     <div>
-      My accounts
+      <table class="u-full-width" id="accounts-table">
+        <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+              <td><%= account.name %></td>
+              <td><%= account.balance %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div>
       <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses' %>
     </div>
   </div>
-
+  
   <div class="one-half column">
     <%= form_with(model: @record, local: true, url: records_path) do |form| %>
 
