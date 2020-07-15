@@ -18,6 +18,10 @@
 }
 
 .navigation {
-  float: right;
-  padding: 1em 0 0 0;
+  padding-left: 8.2%;
+  padding-top: 2.2%;
+}
+
+.dashboard_field {
+  width: 71.5%;
 }

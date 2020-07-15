@@ -42,9 +42,14 @@ feature 'Create record: ' do
       created_record = Record.last
 
       expect(page).to have_content('Record was successfully created')
-      expect(created_record.amount).to eq correct_amount
+      expect(created_record.amount).to      eq correct_amount
       expect(created_record.category_id).to eq category.id
-      expect(created_record.account_id).to eq account.id
+      expect(created_record.account_id).to  eq account.id
+
+      visit 'app/records'
+      expect(page).to have_content(correct_amount)
+      expect(page).to have_content(category.name)
+      expect(page).to have_content(account.name)
     end
   end
 

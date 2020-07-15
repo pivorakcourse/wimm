@@ -11,14 +11,14 @@ RSpec.describe 'Account' do
     scenario 'Allows access to page for create of account' do
       visit new_account_path
 
-      expect(page).to have_content('Create account:')
+      expect(page).to have_content('Create account')
     end
 
     scenario 'Create correct account' do
       visit new_account_path
 
       fill_in :account_name, with: valid_params[:name]
-      click_button 'Create Account'
+      click_button 'Submit'
 
       expect(page).to have_content('Account has been created')
     end
@@ -27,7 +27,7 @@ RSpec.describe 'Account' do
       visit new_account_path
 
       fill_in :account_name, with: invalid_params[:name]
-      click_button 'Create Account'
+      click_button 'Submit'
 
       expect(page).to have_content('Account not created')
     end

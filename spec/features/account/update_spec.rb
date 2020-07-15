@@ -12,21 +12,21 @@ RSpec.describe 'Account' do
 
     scenario 'Allows access to page for update of account' do
       expect(page).to have_current_path '/app/accounts'
-      expect(page).to have_link('Edit')
+      expect(page).to have_link(account.name)
     end
 
     scenario 'Update account with valid params' do
-      click_link 'Edit'
+      click_link account.name
       fill_in :account_name, with: valid_params[:name]
-      click_button 'Update Account'
+      click_button 'Submit'
 
       expect(page).to have_content('Account has been updated')
     end
 
     scenario 'Update account with invalid params' do
-      click_link 'Edit'
+      click_link account.name
       fill_in :account_name, with: invalid_params[:name]
-      click_button 'Update Account'
+      click_button 'Submit'
 
       expect(page).to have_content('Account not updated')
     end

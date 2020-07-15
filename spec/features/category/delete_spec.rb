@@ -11,6 +11,7 @@ RSpec.describe 'Category' do
   before { visit categories_path }
 
   scenario 'if unused category' do
+    click_link category.name
     expect(page).to have_link('Delete')
     expect do
       click_link 'Delete'
