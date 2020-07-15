@@ -12,6 +12,7 @@ RSpec.describe 'Account' do
 
   context 'Zero record account' do
     scenario 'Account disappear after click Delete link' do
+      visit "accounts/#{account.id}/edit"
       expect(page).to have_link('Delete')
 
       expect do

@@ -19,8 +19,9 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.build(category_params)
 
     if @category.save
-      redirect_to categories_path
+      redirect_to categories_path, notice: 'Category has been created'
     else
+      flash.now[:error] = 'Category not created'
       render :new
     end
   end
@@ -29,8 +30,9 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.find(params[:id])
 
     if @category.update(category_params)
-      redirect_to categories_path
+      redirect_to categories_path, notice: 'Category has been updated'
     else
+      flash.now[:error] = 'Category not updated'
       render :edit
     end
   end

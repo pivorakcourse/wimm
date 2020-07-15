@@ -12,22 +12,22 @@ feature 'Create category: ' do
       click_link 'Categories', href: '/app/categories'
 
       expect(page).to have_current_path '/app/categories'
-      expect(page).to have_link('Add category')
+      expect(page).to have_link('Add')
     end
 
     scenario 'Expected category form to have button add' do
       visit 'app/categories'
-      click_link 'Add category'
+      click_link 'Add'
 
-      expect(page).to have_field('Name')
-      expect(page).to have_button('Create Category')
+      expect(page).to have_field('New category name')
+      expect(page).to have_button('Submit')
     end
 
     scenario 'Add new category' do
       visit 'app/categories'
-      click_link 'Add category'
-      fill_in 'Name', with: category_name
-      click_button 'Create Category'
+      click_link 'Add'
+      fill_in 'New category name', with: category_name
+      click_button 'Submit'
 
       expect(page).to have_content(category_name)
       expect(current_path).to eq('/app/categories')

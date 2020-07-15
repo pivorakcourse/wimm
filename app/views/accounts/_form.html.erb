@@ -2,8 +2,11 @@
   <div class="six columns">
     <%= form_for @account do |f| %>
      <label>Account name</label>
-      <%= f.text_field :name, placeholder: "New account" %>
-      <%= f.submit class: "button-primary" %>
+      <%= f.text_field :name, placeholder: "New account name" %>
+      <div>
+        <%= f.submit 'Submit', class: "button-secondary" %>
+        <%= link_to 'Back', accounts_path%>
+      </div>
     <% end %>
   </div>
 </div>
