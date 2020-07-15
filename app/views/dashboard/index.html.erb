@@ -1,6 +1,11 @@
 <div class="row">
   <div class="one-half column">
-    My accounts
+    <div>
+      My accounts
+    </div>
+    <div>
+      <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses' %>
+    </div>
   </div>
 
   <div class="one-half column">
