@@ -12,11 +12,8 @@
         </tbody>
       </table>
     </div>
-    <div>
-      <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses' %>
-    </div>
   </div>
-  
+
   <div class="one-half column">
     <%= form_with(model: @record, local: true, url: records_path) do |form| %>
 
@@ -32,12 +29,32 @@
 
       <tr class="field">
         <%= form.label :amount %>
-        <%= form.text_field :amount, required: true %>
+        <%= form.text_field :amount, required: true, class: 'amount_field' %>
       </tr>
 
       <tr class="actions">
         грн <%= form.submit 'Submit' %>
       </tr>
     <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="one-half column dashboard_pie_chart">
+    <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses', defer: true %>
+  </div>
+
+  <div class="one-half column dashboard_records">
+    <h5 class='records_table_head'>Last 10 records</h5>
+    <table class='records_table'>
+      <% @records.last(10).each do |record| %>
+        <tr>
+          <td><%= record.account.name %></td>
+          <td><%= record.category.name %></td>
+          <td><%= record.amount %> грн</td>
+          <td><%= record.created_at.strftime("%d-%m at %H:%M") %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>

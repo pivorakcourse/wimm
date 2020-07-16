@@ -7,6 +7,7 @@ feature 'Create record: ' do
     let!(:current_user) { assume_logged_user }
     let!(:account) { create(:account, user_id: current_user.id) }
     let!(:category) { create(:category, user_id: current_user.id) }
+    let!(:record) { create(:record, user_id: current_user.id, category_id: category.id, account_id: account.id) }
     let!(:correct_amount) { 1500 }
     let!(:incorrect_amount) { 0 }
     let!(:string_amount) { 'Fake string' }
@@ -50,6 +51,18 @@ feature 'Create record: ' do
       expect(page).to have_content(correct_amount)
       expect(page).to have_content(category.name)
       expect(page).to have_content(account.name)
+    end
+
+    scenario 'Dasboard have last records' do
+      visit user_root_path
+
+      fill_in 'record_amount', with: correct_amount
+      click_button 'Submit'
+
+      expect(page).to have_content(record.amount)
+      expect(page).to have_content(record.account.name)
+      expect(page).to have_content(record.category.name)
+      expect(page).to have_content(record.created_at.strftime('%d-%m at %H:%M'))
     end
   end
 

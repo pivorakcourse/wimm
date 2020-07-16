@@ -23,5 +23,48 @@
 }
 
 .dashboard_field {
-  width: 71.5%;
+  width: 100%;
+}
+
+.records_table {
+  line-height: 70%;
+  margin-left: 8%;
+}
+
+.records_table_head {
+  margin: 1% 0% 2% 3%;
+}
+
+.dashboard_records {
+  border: 2px;
+  border-style: solid;
+  border-color: darkgrey;
+}
+
+.amount_field {
+  width: 68%;
+}
+
+.records_table {
+  line-height: 70%;
+  margin-left: 8%;
+}
+
+.records_table_head {
+  margin: 1% 0% 2% 3%;
+}
+
+.dashboard_records {
+  border: 2px;
+  border-style: solid;
+  border-color: darkgrey;
+  margin-left: 12%;
+}
+
+.dashboard_pie_chart {
+  margin-left: -8% !important;
+}
+
+td {
+  border-bottom: none;
 }
