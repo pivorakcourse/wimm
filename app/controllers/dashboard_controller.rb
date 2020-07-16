@@ -8,5 +8,6 @@ class DashboardController < ApplicationController
     @accounts = current_user.accounts
     @categories = current_user.categories
     @records = current_user.records.includes(:account, :category)
+    @total_balance = TotalBalanceService.new(current_user).call
   end
 end
