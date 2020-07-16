@@ -7,5 +7,6 @@ class DashboardController < ApplicationController
     @record = current_user.records.build
     @accounts = current_user.accounts
     @categories = current_user.categories
+    @records = current_user.records.includes(:account, :category)
   end
 end
