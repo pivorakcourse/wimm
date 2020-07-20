@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_071414) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.string "icon"
+    t.string "type", default: "WithdrawCategory", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["type"], name: "index_categories_on_type"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 

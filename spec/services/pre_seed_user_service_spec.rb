@@ -22,18 +22,20 @@ RSpec.describe PreSeedUserService do
   it 'successfully create category' do
     expect do
       subject.call
-    end.to change { Category.count }.from(0).to(8)
+    end.to change { Category.count }.from(0).to(10)
 
-    expect(user.categories.count).to eq 8
+    expect(user.categories.count).to eq 10
     expect(user.categories).to include(
-      have_attributes(name: 'Home'),
-      have_attributes(name: 'Food'),
-      have_attributes(name: 'Sport'),
-      have_attributes(name: 'Learning'),
-      have_attributes(name: 'Cloth'),
-      have_attributes(name: 'Car'),
-      have_attributes(name: 'Travel'),
-      have_attributes(name: 'Fun')
+      have_attributes(name: 'Home', type: 'WithdrawCategory'),
+      have_attributes(name: 'Food', type: 'WithdrawCategory'),
+      have_attributes(name: 'Sport', type: 'WithdrawCategory'),
+      have_attributes(name: 'Learning', type: 'WithdrawCategory'),
+      have_attributes(name: 'Cloth', type: 'WithdrawCategory'),
+      have_attributes(name: 'Car', type: 'WithdrawCategory'),
+      have_attributes(name: 'Travel', type: 'WithdrawCategory'),
+      have_attributes(name: 'Fun', type: 'WithdrawCategory'),
+      have_attributes(name: 'Salary', type: 'IncomeCategory'),
+      have_attributes(name: 'Other', type: 'IncomeCategory')
     )
   end
 end

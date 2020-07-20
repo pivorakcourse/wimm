@@ -4,7 +4,9 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @categories = Category.where(user: current_user)
+    @withdraw_categories = WithdrawCategory.where(user: current_user)
+    @income_categories = IncomeCategory.where(user: current_user)
   end
 
   def new
@@ -51,6 +53,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :type)
   end
 end

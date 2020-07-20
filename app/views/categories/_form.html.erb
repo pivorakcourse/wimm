@@ -1,8 +1,10 @@
 <div class="row">
   <div class="six columns">
-    <%= form_for @category do |f| %>
+    <%= form_for @category.becomes(Category) do |f| %>
      <label>Category name</label>
       <%= f.text_field :name, placeholder: "New category name" %>
+       <label>Category type</label>
+      <%= f.select :type, [["Withdraw", WithdrawCategory.name], ["Income", IncomeCategory.name]] %>
       <div>
         <%= f.submit 'Submit', class: "button-secondary" %>
         <%= link_to 'Back', categories_path%>
