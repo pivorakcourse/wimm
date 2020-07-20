@@ -5,4 +5,9 @@ FactoryBot.define do
     name { 'Food' }
     icon { '' }
   end
+  factory :income_category do
+    name { 'Salary' }
+    icon { '' }
+    type { 'IncomeCategory' }
+  end
 end

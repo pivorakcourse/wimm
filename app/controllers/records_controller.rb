@@ -8,9 +8,9 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.records.build(record_params)
+    @record = RecordCreateService.new(record_params, current_user).call
 
-    if @record.save
+    if @record.persisted?
       redirect_to user_root_path, notice: 'Record was successfully created.'
     else
       redirect_to user_root_path, notice: 'Record can`t be string and record can`t be zero'

@@ -28,15 +28,15 @@ class PreSeedUserService
   end
 
   def default_categories
-    [
-      { name: 'Home' },
-      { name: 'Food' },
-      { name: 'Sport' },
-      { name: 'Learning' },
-      { name: 'Cloth' },
-      { name: 'Car' },
-      { name: 'Travel' },
-      { name: 'Fun' }
-    ]
+    [{ name: 'Home' },
+     { name: 'Food' },
+     { name: 'Sport' },
+     { name: 'Learning' },
+     { name: 'Cloth' },
+     { name: 'Car' },
+     { name: 'Travel' },
+     { name: 'Fun' },
+     { name: 'Salary', type: :IncomeCategory },
+     { name: 'Other', type: :IncomeCategory }]
   end
 end
