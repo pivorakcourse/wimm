@@ -140,6 +140,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pagy (3.8.2)
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
@@ -295,6 +296,7 @@ DEPENDENCIES
   guard-rspec
   launchy
   listen (~> 3.2)
+  pagy (~> 3.8, >= 3.8.2)
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)

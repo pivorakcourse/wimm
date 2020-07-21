@@ -7,7 +7,12 @@ class Record < ApplicationRecord
 
   validates :amount, presence: true, numericality: { other_than: 0 }
 
-  after_save do
-    BalanceCalculateService.new(self).call
+  after_save    :balance_update
+  after_destroy :balance_update
+
+  private
+
+  def balance_update
+    account.update(balance: BalanceCalculateService.new(self).call)
   end
 end

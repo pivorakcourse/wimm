@@ -5,11 +5,9 @@ class BalanceCalculateService
 
   def initialize(record)
     @account = record.account
-    @amount = record.amount
-    @balance = record.account.balance
   end
 
   def call
-    account.update(balance: balance - amount)
+    Record.where(account: @account).sum(:amount)
   end
 end
