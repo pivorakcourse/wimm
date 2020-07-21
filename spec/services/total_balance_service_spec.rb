@@ -10,6 +10,7 @@ RSpec.describe TotalBalanceService do
   subject { described_class.new(user).call }
 
   it 'balance has changed' do
-    expect(subject).to eq(-100)
+    balance = account.balance + account_2.balance + account_3.balance
+    expect(subject).to eq(balance)
   end
 end
