@@ -12,6 +12,14 @@
 
   <tbody>
     <% @records.each do |record| %>
+      <% if record.category_id == 0 && record.amount > 0 %>
+        <tr>
+        <td><%= record.amount %></td>
+        <td><%= record.category.name %> <%= record.account.name %> => </td>
+      <% elsif record.category_id == 0 && record.amount < 0%>
+        <td><%= record.account.name %></td>
+      </tr>
+      <% else %>
       <tr>
         <td><%= record.amount %></td>
         <td><%= record.account.name %></td>
@@ -19,6 +27,7 @@
         <td><%= link_to 'Edit', edit_record_path(record) %></td>
         <td><%= link_to 'Delete', record_path(record.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

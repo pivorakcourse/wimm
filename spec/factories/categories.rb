@@ -5,9 +5,19 @@ FactoryBot.define do
     name { 'Food' }
     icon { '' }
   end
-  factory :income_category do
+
+  trait :income_category do
     name { 'Salary' }
-    icon { '' }
-    type { 'IncomeCategory' }
+    type { RecordCreateService::INCOME_CATEGORY }
+  end
+
+  trait :income_transfer_category do
+    name { AccountTransferService::TRANSFER }
+    type { RecordCreateService::INCOME_CATEGORY }
+  end
+
+  trait :withdraw_transfer_category do
+    name { AccountTransferService::TRANSFER }
+    type { RecordCreateService::WITHDRAW_CATEGORY }
   end
 end

@@ -25,9 +25,11 @@ class DashboardController < ApplicationController
 
   def income_categories
     @income_categories ||= IncomeCategory.where(user: current_user)
+                                         .exclude_transfer
   end
 
   def withdraw_categories
     @withdraw_categories ||= WithdrawCategory.where(user: current_user)
+                                             .exclude_transfer
   end
 end

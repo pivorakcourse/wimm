@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :categories, except: %i[show]
     resources :accounts
     resources :records
+    resources :transfers, only: :create
   end
 end

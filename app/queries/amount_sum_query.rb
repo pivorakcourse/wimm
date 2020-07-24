@@ -9,7 +9,9 @@ class AmountSumQuery
     Record.where(user_id: user.id)
           .where(['created_at > ?', 30.days.ago])
           .group('category')
-          .sum('amount').each_with_object({}) { |(k, v), hh| hh[k.name] = v }
+          .sum('amount').each_with_object({}) do |(k, v), hh|
+      hh[k.name] = v if k.name != AccountTransferService::TRANSFER
+    end
   end
 
   private

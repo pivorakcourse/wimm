@@ -32,6 +32,15 @@ feature 'Create category: ' do
       expect(page).to have_content(category_name)
       expect(current_path).to eq('/app/categories')
     end
+
+    scenario 'Not created category' do
+      visit 'app/categories'
+      click_link 'Add'
+      click_button 'Submit'
+
+      expect(page).to have_content('Category not created')
+      expect(current_path).to eq('/app/categories')
+    end
   end
 
   context 'Without autorization' do

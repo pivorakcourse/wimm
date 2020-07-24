@@ -18,49 +18,31 @@
     </div>
   </div>
 
-  <div class="one-half column">
-    <%= form_with(model: record, local: true, url: records_path, id: 'withdraw-form') do |form| %>
+  <div>
+    <ul class="tab-nav one-half column">
+      <li>
+        <a class="button <%= tab_active?('withdraw') %>" href="?tab=withdraw">Withdraw</a>
+      </li>
+      <li>
+        <a class="button <%= tab_active?('transfer') %>" href="?tab=transfer">Transfer</a>
+      </li>
+      <li>
+        <a class="button <%= tab_active?('income') %>" href="?tab=income">Income</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="tab-content one-half column">
+    <div class="tab-pane <%= tab_nil?('withdraw') %>" id="withdraw">
+      <%= render 'withdraw' %>
+    </div>
 
-      <tr class="field">
-        <%= form.label :account_id %>
-        <%= select("record", :account_id, accounts.collect {|a| [ a.name, a.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
-      </tr>
-
-      <tr class="field">
-        <%= form.label :category_id %>
-        <%= select("record", :category_id, withdraw_categories.collect {|c| [ c.name, c.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
-      </tr>
-
-      <tr class="field">
-        <%= form.label :amount %>
-        <%= form.text_field :amount, required: true, class: 'amount_field' %>
-      </tr>
-
-      <tr class="actions">
-        грн <%= form.submit 'Submit' %>
-      </tr>
-    <% end %>
-     <%= form_with(model: record, local: true, url: records_path, id: 'income-form') do |form| %>
-
-      <tr class="field">
-        <%= form.label :account_id %>
-        <%= select("record", :account_id, accounts.collect {|a| [ a.name, a.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
-      </tr>
-
-      <tr class="field">
-        <%= form.label :category_id %>
-        <%= select("record", :category_id, income_categories.collect {|c| [ c.name, c.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
-      </tr>
-
-      <tr class="field">
-        <%= form.label :amount %>
-        <%= form.text_field :amount, required: true, class: 'amount_field' %>
-      </tr>
-
-      <tr class="actions">
-        грн <%= form.submit 'Submit' %>
-      </tr>
-    <% end %>
+    <div class="tab-pane <%= tab_pane_active?('transfer') %>" id="transfer">
+      <%= render 'transfer' %>
+    </div>
+    <div class="tab-pane <%= tab_pane_active?('income') %>" id="income">
+      <%= render 'income' %>
+    </div>
   </div>
 </div>
 
@@ -73,12 +55,16 @@
     <h5 class='records_table_head'>Last 10 records</h5>
     <table class='records_table'>
       <% records.last(10).each do |record| %>
-        <tr>
+        <% if record.category.name == "Transfer" %>
+          <%= render 'record', record: record %>
+        <% else %>
+          <tr>
           <td><%= record.account.name %></td>
           <td><%= record.category.name %></td>
           <td><%= record.amount %> грн</td>
           <td><%= record.created_at.strftime("%d-%m at %H:%M") %></td>
         </tr>
+        <% end %>
       <% end %>
     </table>
   </div>

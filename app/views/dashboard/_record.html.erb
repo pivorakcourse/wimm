@@ -1,0 +1,9 @@
+<% if record.category.type == RecordCreateService::WITHDRAW_CATEGORY %>
+  <tr>
+    <td><%= record.account.name %></td>
+<% else %>
+    <td><%= record.account.name %></td>
+    <td><%= record.amount %> грн</td>
+    <td><%= record.created_at.strftime("%d-%m at %H:%M") %></td>
+  </tr>
+<% end %>
