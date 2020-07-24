@@ -28,6 +28,9 @@ Lint/AmbiguousBlockAssociation:
     - 'spec/****/***/**/*'
     - 'spec/*****/****/***/*'
 
+Metrics/MethodLength:
+    Max: 15
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'

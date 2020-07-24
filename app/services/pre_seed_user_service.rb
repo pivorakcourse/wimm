@@ -28,7 +28,8 @@ class PreSeedUserService
   end
 
   def default_categories
-    [{ name: 'Home' },
+    [{ name: AccountTransferService::TRANSFER },
+     { name: 'Home' },
      { name: 'Food' },
      { name: 'Sport' },
      { name: 'Learning' },
@@ -36,6 +37,7 @@ class PreSeedUserService
      { name: 'Car' },
      { name: 'Travel' },
      { name: 'Fun' },
+     { name: AccountTransferService::TRANSFER, type: :IncomeCategory },
      { name: 'Salary', type: :IncomeCategory },
      { name: 'Other', type: :IncomeCategory }]
   end

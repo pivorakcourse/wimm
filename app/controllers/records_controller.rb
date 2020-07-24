@@ -13,9 +13,9 @@ class RecordsController < ApplicationController
     @record = RecordCreateService.new(record_params, current_user).call
 
     if @record.persisted?
-      redirect_to user_root_path, notice: 'Record was successfully created.'
+      redirect_to redirect_rule, notice: 'Record was successfully created.'
     else
-      redirect_to user_root_path, notice: 'Record can`t be string and record can`t be zero'
+      redirect_to user_root_path(tab: 'withdraw'), notice: 'Record can`t be string and record can`t be zero'
     end
   end
 
@@ -44,5 +44,13 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record).permit(:amount, :account_id, :category_id)
+  end
+
+  def redirect_rule
+    if @record.category.type == RecordCreateService::INCOME_CATEGORY
+      user_root_path(tab: 'income')
+    else
+      user_root_path(tab: 'withdraw')
+    end
   end
 end

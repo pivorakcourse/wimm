@@ -7,7 +7,7 @@ feature 'Create record: ' do
     let!(:current_user) { assume_logged_user }
     let!(:account) { create(:account, user_id: current_user.id) }
     let!(:category) { create(:category, user_id: current_user.id) }
-    let!(:income_category) { create(:income_category, user_id: current_user.id) }
+    let!(:income_category) { create(:category, :income_category, user_id: current_user.id) }
     let!(:record) { create(:record, user_id: current_user.id, category_id: category.id, account_id: account.id) }
     let!(:correct_amount) { 1500 }
     let!(:incorrect_amount) { 0 }

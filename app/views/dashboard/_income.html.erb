@@ -1,0 +1,21 @@
+<%= form_with(model: record, local: true, url: records_path, id: 'income-form') do |form| %>
+
+  <tr class="field">
+    <%= form.label :account_id %>
+    <%= select("record", :account_id, accounts.collect {|a| [ a.name, a.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
+  </tr>
+
+  <tr class="field">
+    <%= form.label :category_id %>
+    <%= select("record", :category_id, income_categories.collect {|c| [ c.name, c.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
+  </tr>
+
+  <tr class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, required: true, class: 'amount_field' %>
+  </tr>
+
+  <tr class="actions">
+    грн <%= form.submit 'Submit' %>
+  </tr>
+<% end %>
