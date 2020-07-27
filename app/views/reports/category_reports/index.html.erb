@@ -1,0 +1,31 @@
+<div class="row">
+
+  <div class="three columns">
+    <ul><%= link_to 'Split by categories', reports_category_reports_path %></ul>
+    <ul><%= link_to 'Sum by month' %></ul>
+  </div>
+
+  <div class="nine columns">
+    <div class="center">
+      <div>
+        <%= form_tag(reports_category_reports_path, method: 'get') do %>
+          <%= date_field_tag(:from, start_period) %>
+          <%= date_field_tag(:to, end_period) %>
+          <%= submit_tag("Filter") %>
+        <% end %>
+      </div>
+      <div>
+        <%= pie_chart Reports::CategoryReportsQuery.new(current_user).period_sum(start_period || Date.today.at_beginning_of_month, end_period || Date.today), defer: false %>
+      </div>
+      <div>
+        <%= this_month_link %>
+        <%= previous_month_link %>
+      </div>
+      <div>
+        <%= this_year_link %>
+        <%= previous_year_link %>
+      </div>
+    </div>
+  </div>
+
+</div>

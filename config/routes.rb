@@ -14,5 +14,8 @@ Rails.application.routes.draw do
     resources :accounts
     resources :records
     resources :transfers, only: :create
+    namespace :reports do
+      resources :category_reports, only: [:index]
+    end
   end
 end
