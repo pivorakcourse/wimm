@@ -1,4 +1,6 @@
 <h5>Edit category</h5>
 
 <%= render 'form', category: @category %>
-<td> <%= delete_category_button(@category) %></td>
+
+<%= maybe_make_favorite_category_link(@category) %>
+<%= delete_category_button(@category) %>
