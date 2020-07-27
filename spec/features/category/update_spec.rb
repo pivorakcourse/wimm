@@ -20,13 +20,13 @@ feature 'Update category: ' do
       click_link category.name
 
       expect(page).to have_field('New category name')
-      expect(page).to have_button('Submit')
+      expect(page).to have_button('Save')
     end
 
     scenario 'Update category_name with valid name' do
       click_link category.name
       fill_in 'New category name', with: valid_name
-      click_button 'Submit'
+      click_button 'Save'
 
       expect(page).to have_content(valid_name)
       expect(page).not_to have_content(category.name)
@@ -36,7 +36,7 @@ feature 'Update category: ' do
     scenario 'Update category_name with invalid name' do
       click_link category.name
       fill_in 'New category name', with: invalid_name
-      click_button 'Submit'
+      click_button 'Save'
 
       expect(page).to have_content('')
       expect(current_path).to eq("/app/categories/#{Category.last.id}")

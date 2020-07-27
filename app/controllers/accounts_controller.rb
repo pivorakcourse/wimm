@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account::Create.call(account_params, current_user)
+
     if @account.persisted?
       redirect_to accounts_path, notice: 'Account has been created'
     else
@@ -27,6 +28,7 @@ class AccountsController < ApplicationController
 
   def update
     @account = current_user.accounts.find(params[:id])
+
     if @account.update(account_params)
       redirect_to accounts_path, notice: 'Account has been updated'
     else
@@ -37,12 +39,11 @@ class AccountsController < ApplicationController
 
   def destroy
     @account = current_user.accounts.find(params[:id])
-    if RemoveAccountPolicy.new(@account).allowed?
-      @account.destroy
-      redirect_to accounts_path, notice: 'Account has been deleted'
-    else
-      redirect_to accounts_path, notice: 'Account not deleted'
-    end
+
+    return unless RemoveAccountPolicy.new(@account).allowed?
+
+    @account.destroy
+    redirect_to accounts_path, notice: 'Account has been deleted'
   end
 
   private

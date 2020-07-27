@@ -20,14 +20,14 @@ feature 'Create category: ' do
       click_link 'Add'
 
       expect(page).to have_field('New category name')
-      expect(page).to have_button('Submit')
+      expect(page).to have_button('Save')
     end
 
     scenario 'Add new category' do
       visit 'app/categories'
       click_link 'Add'
       fill_in 'New category name', with: category_name
-      click_button 'Submit'
+      click_button 'Save'
 
       expect(page).to have_content(category_name)
       expect(current_path).to eq('/app/categories')
@@ -36,7 +36,7 @@ feature 'Create category: ' do
     scenario 'Not created category' do
       visit 'app/categories'
       click_link 'Add'
-      click_button 'Submit'
+      click_button 'Save'
 
       expect(page).to have_content('Category not created')
       expect(current_path).to eq('/app/categories')

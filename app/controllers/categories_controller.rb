@@ -42,12 +42,10 @@ class CategoriesController < ApplicationController
   def destroy
     @category = current_user.categories.find(params[:id])
 
-    if RemoveCategoryPolicy.new(@category).allowed?
-      @category.destroy
-      redirect_to categories_path, notice: 'Category has been deleted'
-    else
-      redirect_to categories_path, notice: 'Category not deleted'
-    end
+    return unless RemoveCategoryPolicy.new(@category).allowed?
+
+    @category.destroy
+    redirect_to categories_path, notice: 'Category has been deleted'
   end
 
   private
