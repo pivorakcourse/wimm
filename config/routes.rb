@@ -15,15 +15,14 @@ Rails.application.routes.draw do
       put :favorite, to: 'favorite_account#update'
     end
 
-    resources :reports, only: %i[index] do
-      get :yearly_expenses, to: 'reports/yearly_expenses#index', on: :collection
-    end
-
     resources :accounts
     resources :records
     resources :transfers, only: :create
     namespace :reports do
-      resources :category_reports, only: [:index]
+      root to: 'reports#index'
+      resource :categories_summary, only: [:show]
+      resource :monthly_summary, only: [:show]
+      resource :yearly_expenses, only: [:show]
     end
   end
 end

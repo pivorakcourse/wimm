@@ -1,0 +1,49 @@
+<div calss='container'>
+  <div class='row'>
+    <div class='three columns'>
+      <%= render 'reports/reports/navigation' %>
+    </div>
+
+    <div class='nine columns'>
+      <div class='date-filter'>
+        <%= form_tag(reports_monthly_summary_path, method: 'get') do %>
+          <%= date_field_tag :from, @from, class: 'date-field' %>
+          <%= date_field_tag :to, @to, class: 'date-field' %>
+          <%= submit_tag('Filter') %>
+        <% end %>
+      </div>
+      <canvas id="expenseIncomeBarChart" width="800" height="500"></canvas>
+      <script>
+        var sum_amount_income = <%= @income_report.sum_amount.inspect.html_safe %>
+        var sum_amount_expense = <%= @expense_report.sum_amount.inspect.html_safe %>
+        var month = <%= @income_report.months.inspect.html_safe %>;
+        var barChartData = {
+          labels: month,
+          datasets: [{
+            label: 'Income',
+            backgroundColor: '#93d3b3',
+            borderColor: '#5bbd21',
+            borderWidth: 1,
+            data: sum_amount_income
+          }, {
+            label: 'Expense',
+            backgroundColor: '#f18b85',
+            borderColor: '#ed462f',
+            borderWidth: 1,
+            data: sum_amount_expense
+          }]
+        };
+        window.onload = function() {
+          var ctx = document.getElementById('expenseIncomeBarChart');
+          var expenseIncomeBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+          });
+        }
+      </script>
+      <div class='filters-link'>
+        <%= this_year_link(:reports_monthly_summary_path) %>
+        <%= previous_year_link(:reports_monthly_summary_path) %>
+      </div>
+  </div>
+</div>
