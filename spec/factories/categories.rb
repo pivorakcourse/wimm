@@ -8,16 +8,16 @@ FactoryBot.define do
 
   trait :income_category do
     name { 'Salary' }
-    type { RecordCreateService::INCOME_CATEGORY }
+    type { CreateRecordService::INCOME_CATEGORY }
   end
 
   trait :income_transfer_category do
     name { AccountTransferService::TRANSFER }
-    type { RecordCreateService::INCOME_CATEGORY }
+    type { CreateRecordService::INCOME_CATEGORY }
   end
 
   trait :expense_transfer_category do
     name { AccountTransferService::TRANSFER }
-    type { RecordCreateService::EXPENSE_CATEGORY }
+    type { CreateRecordService::EXPENSE_CATEGORY }
   end
 end

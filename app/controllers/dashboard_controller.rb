@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
   end
 
   def total_balance
-    @total_balance ||= TotalBalanceService.new(current_user).call
+    @total_balance ||= CalculateUserTotalBalanceService.new(current_user).call
   end
 
   def income_categories

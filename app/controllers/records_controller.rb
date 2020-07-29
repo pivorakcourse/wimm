@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = RecordCreateService.new(record_params, current_user).call
+    @record = CreateRecordService.new(record_params, current_user).call
 
     if @record.persisted?
       redirect_to redirect_rule, notice: 'Record was successfully created.'
@@ -47,7 +47,7 @@ class RecordsController < ApplicationController
   end
 
   def redirect_rule
-    if @record.category.type == RecordCreateService::INCOME_CATEGORY
+    if @record.category.type == CreateRecordService::INCOME_CATEGORY
       user_root_path(tab: 'income')
     else
       user_root_path(tab: 'expense')

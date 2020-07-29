@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TotalBalanceService
+class CalculateUserTotalBalanceService
   attr_reader :user
 
   def initialize(user)

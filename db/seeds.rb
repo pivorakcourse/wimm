@@ -7,6 +7,6 @@ user = User.first
     random_amount = rand(1..1000)
     print '.'
 
-    RecordCreateService.new({account: account, category: category, amount: random_amount, created_at: n.days.ago}, user).call
+    CreateRecordService.new({account: account, category: category, amount: random_amount, created_at: n.days.ago}, user).call
   end
 end

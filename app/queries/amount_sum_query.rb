@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AmountSumQuery
+  include WithdrawAndTransfer
+
   def initialize(user)
     @user = user
   end
@@ -9,8 +11,8 @@ class AmountSumQuery
     Record.where(user_id: user.id)
           .where(['created_at > ?', 30.days.ago])
           .group('category')
-          .sum('amount').each_with_object({}) do |(k, v), hh|
-      hh[k.name] = v if k.name != AccountTransferService::TRANSFER
+          .sum('amount').each_with_object({}) do |(category, amount), acum|
+      acum[category.name] = amount if transfer?(category) && withdraw?(category)
     end
   end
 

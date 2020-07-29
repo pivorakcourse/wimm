@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TotalBalanceService do
+RSpec.describe CalculateUserTotalBalanceService do
   let!(:user) { create(:user) }
   let!(:account) { create(:account, user: user, balance: 100) }
   let!(:account_2) { create(:account, user: user, balance: 200) }
