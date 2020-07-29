@@ -2,7 +2,7 @@
 
   <tr class="field">
     <%= form.label :account_id %>
-    <%= select("record", :account_id, accounts.collect {|a| [ a.name, a.id ] }, { include_blank: false }, { class: 'dashboard_field' }) %>
+    <%= select("record", :account_id, accounts.collect {|a| [ a.name, a.id ] }, { include_blank: false, selected: favorite_account_id }, { class: 'dashboard_field' }) %>
   </tr>
 
   <tr class="field">
