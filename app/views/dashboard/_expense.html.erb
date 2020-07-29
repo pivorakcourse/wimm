@@ -1,4 +1,4 @@
-<%= form_with(model: record, local: true, url: records_path, id: 'withdraw-form') do |form| %>
+<%= form_with(model: record, local: true, url: records_path, id: 'expense-form') do |form| %>
 
   <tr class="field">
     <%= form.label :account_id %>
@@ -7,7 +7,7 @@
 
   <tr class="field">
     <%= form.label :category_id %>
-    <%= select("record", :category_id, withdraw_categories.collect {|c| [ c.name, c.id ] }, { include_blank: false, selected: favorite_category_id }, { class: 'dashboard_field' }) %>
+    <%= select("record", :category_id, expense_categories.collect {|c| [ c.name, c.id ] }, { include_blank: false, selected: favorite_category_id }, { class: 'dashboard_field' }) %>
   </tr>
 
   <tr class="field">

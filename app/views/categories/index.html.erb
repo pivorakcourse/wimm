@@ -1,9 +1,9 @@
 <div class="row">
   <div>
-    <h5>Withdraw category:</h5>
+    <h5>Expense category:</h5>
 
     <ul>
-      <% @withdraw_categories.each do |category| %>
+      <% @expense_categories.each do |category| %>
         <li>
           <%= link_to category.name, edit_category_path(category) %>
           <%= maybe_favorite_category_tag(category) %>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RecordCreateService
-  WITHDRAW_CATEGORY = 'WithdrawCategory'
+  EXPENSE_CATEGORY = 'ExpenseCategory'
   INCOME_CATEGORY = 'IncomeCategory'
 
   attr_reader :params, :record
@@ -13,8 +13,8 @@ class RecordCreateService
 
   def call
     case record.category.type
-    when WITHDRAW_CATEGORY
-      withdraw
+    when EXPENSE_CATEGORY
+      expense
     when INCOME_CATEGORY
       income
     end
@@ -23,7 +23,7 @@ class RecordCreateService
 
   private
 
-  def withdraw
+  def expense
     record.update(amount: -record.amount)
   end
 

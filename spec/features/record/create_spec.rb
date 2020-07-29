@@ -21,7 +21,7 @@ feature 'Create record: ' do
 
     scenario 'Create record with zero amount' do
       visit user_root_path
-      within('form#withdraw-form') do
+      within('form#expense-form') do
         fill_in 'Amount', with: incorrect_amount
         click_button 'Submit'
       end
@@ -41,7 +41,7 @@ feature 'Create record: ' do
 
     scenario 'Create record with string amount' do
       visit user_root_path
-      within('form#withdraw-form') do
+      within('form#expense-form') do
         fill_in 'Amount', with: string_amount
         click_button 'Submit'
       end
@@ -62,7 +62,7 @@ feature 'Create record: ' do
     scenario 'Create record with correct amount' do
       visit user_root_path
 
-      within('form#withdraw-form') do
+      within('form#expense-form') do
         fill_in 'record_amount', with: correct_amount
         click_button 'Submit'
       end
@@ -104,7 +104,7 @@ feature 'Create record: ' do
     scenario 'Dasboard have last records' do
       visit user_root_path
 
-      within('form#withdraw-form') do
+      within('form#expense-form') do
         fill_in 'record_amount', with: correct_amount
         click_button 'Submit'
       end

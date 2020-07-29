@@ -16,8 +16,8 @@ FactoryBot.define do
     type { RecordCreateService::INCOME_CATEGORY }
   end
 
-  trait :withdraw_transfer_category do
+  trait :expense_transfer_category do
     name { AccountTransferService::TRANSFER }
-    type { RecordCreateService::WITHDRAW_CATEGORY }
+    type { RecordCreateService::EXPENSE_CATEGORY }
   end
 end

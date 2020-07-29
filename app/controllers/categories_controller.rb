@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(user: current_user)
-    @withdraw_categories = WithdrawCategory.where(user: current_user).exclude_transfer
+    @expense_categories = ExpenseCategory.where(user: current_user).exclude_transfer
     @income_categories = IncomeCategory.where(user: current_user).exclude_transfer
   end
 

@@ -4,7 +4,7 @@ module DashboardHelper
   ACTIVE = 'active'
 
   def tab_active?(id)
-    return ACTIVE if tab == id || (tab.nil? && id == 'withdraw')
+    return ACTIVE if tab == id || (tab.nil? && id == 'Expense')
   end
 
   def tab_pane_active?(id)

@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   helper_method :accounts, :record, :records, :total_balance, :income_categories,
-                :withdraw_categories, :favorite_category_id, :favorite_account_id
+                :expense_categories, :favorite_category_id, :favorite_account_id
 
   private
 
@@ -29,9 +29,9 @@ class DashboardController < ApplicationController
                                          .exclude_transfer
   end
 
-  def withdraw_categories
-    @withdraw_categories ||= WithdrawCategory.where(user: current_user)
-                                             .exclude_transfer
+  def expense_categories
+    @expense_categories ||= ExpenseCategory.where(user: current_user)
+                                           .exclude_transfer
   end
 
   def favorite_category_id

@@ -15,7 +15,7 @@ class RecordsController < ApplicationController
     if @record.persisted?
       redirect_to redirect_rule, notice: 'Record was successfully created.'
     else
-      redirect_to user_root_path(tab: 'withdraw'), notice: 'Record can`t be string and record can`t be zero'
+      redirect_to user_root_path(tab: 'expense'), notice: 'Record can`t be string and record can`t be zero'
     end
   end
 
@@ -50,7 +50,7 @@ class RecordsController < ApplicationController
     if @record.category.type == RecordCreateService::INCOME_CATEGORY
       user_root_path(tab: 'income')
     else
-      user_root_path(tab: 'withdraw')
+      user_root_path(tab: 'expense')
     end
   end
 end
