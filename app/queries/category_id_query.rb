@@ -5,8 +5,8 @@ class CategoryIdQuery
     @user = user
   end
 
-  def withdraw
-    WithdrawCategory.where(user_id: user.id).where(name: AccountTransferService::TRANSFER).ids[0]
+  def expense
+    ExpenseCategory.where(user_id: user.id).where(name: AccountTransferService::TRANSFER).ids[0]
   end
 
   def income

@@ -12,10 +12,10 @@ RSpec.describe CategoryIdQuery do
     )
   end
 
-  let!(:withdraw_transfer_category) do
+  let!(:expense_transfer_category) do
     create(
       :category,
-      :withdraw_transfer_category,
+      :expense_transfer_category,
       user_id: user.id
     )
   end
@@ -24,7 +24,7 @@ RSpec.describe CategoryIdQuery do
 
   describe 'got expected id for type category' do
     it 'returns expected id' do
-      expect(query.withdraw).to eq(withdraw_transfer_category.id)
+      expect(query.expense).to eq(expense_transfer_category.id)
     end
 
     it 'returns expected id' do

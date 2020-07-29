@@ -21,20 +21,20 @@
   <div>
     <ul class="tab-nav one-half column">
       <li>
-        <a class="button <%= tab_active?('withdraw') %>" href="?tab=withdraw">Withdraw</a>
+        <a class="button <%= tab_active?('expense') %>" href="?tab=expense">Expenses</a>
       </li>
       <li>
         <a class="button <%= tab_active?('transfer') %>" href="?tab=transfer">Transfer</a>
       </li>
       <li>
-        <a class="button <%= tab_active?('income') %>" href="?tab=income">Income</a>
+        <a class="button <%= tab_active?('income') %>" href="?tab=income">Incomes</a>
       </li>
     </ul>
   </div>
 
   <div class="tab-content one-half column">
-    <div class="tab-pane <%= tab_nil?('withdraw') %>" id="withdraw">
-      <%= render 'withdraw' %>
+    <div class="tab-pane <%= tab_nil?('expense') %>" id="expense">
+      <%= render 'expense' %>
     </div>
 
     <div class="tab-pane <%= tab_pane_active?('transfer') %>" id="transfer">

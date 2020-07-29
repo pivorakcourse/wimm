@@ -3,7 +3,7 @@ class CreateCategories < ActiveRecord::Migration[6.0]
     create_table :categories do |t|
       t.string :name, null: false
       t.string :icon
-      t.string :type, default: :WithdrawCategory, null: false
+      t.string :type, default: :ExpenseCategory, null: false
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

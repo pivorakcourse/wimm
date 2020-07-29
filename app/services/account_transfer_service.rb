@@ -12,7 +12,7 @@ class AccountTransferService
 
   def call
     ApplicationRecord.transaction do
-      RecordCreateService.new(withdraw_params, user).call
+      RecordCreateService.new(expense_params, user).call
       RecordCreateService.new(income_params, user).call
     end
   end
@@ -25,7 +25,7 @@ class AccountTransferService
     { amount: transfer, account_id: to, category_id: CategoryIdQuery.new(user).income }
   end
 
-  def withdraw_params
-    { amount: transfer, account_id: from, category_id: CategoryIdQuery.new(user).withdraw }
+  def expense_params
+    { amount: transfer, account_id: from, category_id: CategoryIdQuery.new(user).expense }
   end
 end

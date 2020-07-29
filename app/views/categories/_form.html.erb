@@ -6,7 +6,7 @@
 
       <% if @category.new_record? %>
         <label>Category type</label>
-        <%= f.select :type, [["Withdraw", WithdrawCategory.name], ["Income", IncomeCategory.name]] %>
+        <%= f.select :type, [["Expense", ExpenseCategory.name], ["Income", IncomeCategory.name]] %>
       <% end %>
 
       <div>

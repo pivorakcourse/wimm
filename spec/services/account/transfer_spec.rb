@@ -14,10 +14,10 @@ RSpec.describe AccountTransferService do
     )
   end
 
-  let!(:withdraw_transfer_category) do
+  let!(:expense_transfer_category) do
     create(
       :category,
-      :withdraw_transfer_category,
+      :expense_transfer_category,
       user_id: user.id
     )
   end

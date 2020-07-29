@@ -26,15 +26,15 @@ RSpec.describe PreSeedUserService do
 
     expect(user.categories.count).to eq 12
     expect(user.categories).to include(
-      have_attributes(name: AccountTransferService::TRANSFER, type: 'WithdrawCategory'),
-      have_attributes(name: 'Home', type: 'WithdrawCategory'),
-      have_attributes(name: 'Food', type: 'WithdrawCategory'),
-      have_attributes(name: 'Sport', type: 'WithdrawCategory'),
-      have_attributes(name: 'Learning', type: 'WithdrawCategory'),
-      have_attributes(name: 'Cloth', type: 'WithdrawCategory'),
-      have_attributes(name: 'Car', type: 'WithdrawCategory'),
-      have_attributes(name: 'Travel', type: 'WithdrawCategory'),
-      have_attributes(name: 'Fun', type: 'WithdrawCategory'),
+      have_attributes(name: AccountTransferService::TRANSFER, type: 'ExpenseCategory'),
+      have_attributes(name: 'Home', type: 'ExpenseCategory'),
+      have_attributes(name: 'Food', type: 'ExpenseCategory'),
+      have_attributes(name: 'Sport', type: 'ExpenseCategory'),
+      have_attributes(name: 'Learning', type: 'ExpenseCategory'),
+      have_attributes(name: 'Cloth', type: 'ExpenseCategory'),
+      have_attributes(name: 'Car', type: 'ExpenseCategory'),
+      have_attributes(name: 'Travel', type: 'ExpenseCategory'),
+      have_attributes(name: 'Fun', type: 'ExpenseCategory'),
       have_attributes(name: AccountTransferService::TRANSFER, type: 'IncomeCategory'),
       have_attributes(name: 'Salary', type: 'IncomeCategory'),
       have_attributes(name: 'Other', type: 'IncomeCategory')
