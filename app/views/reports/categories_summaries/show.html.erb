@@ -1,0 +1,30 @@
+<div class="row">
+
+  <div class="three columns">
+    <%= render 'reports/reports/navigation' %>
+  </div>
+
+  <div class="nine columns">
+    <div class="">
+      <div class='date-filter'>
+        <%= form_tag(reports_categories_summary_path, method: 'get') do %>
+          <%= date_field_tag :from, start_period, class: 'date-field' %>
+          <%= date_field_tag :to, end_period, class: 'date-field' %>
+          <%= submit_tag("Filter") %>
+        <% end %>
+      </div>
+      <div>
+        <%= pie_chart Reports::CategoryReportsQuery.new(current_user).period_sum(start_period || Date.today.at_beginning_of_month, end_period || Date.today), defer: false %>
+      </div>
+      <div class='filters-link'>
+        <%= this_month_link(:reports_categories_summary_path) %>
+        <%= previous_month_link(:reports_categories_summary_path) %>
+      </div>
+      <div class='filters-link'>
+        <%= this_year_link(:reports_categories_summary_path) %>
+        <%= previous_year_link(:reports_categories_summary_path) %>
+      </div>
+    </div>
+  </div>
+
+</div>

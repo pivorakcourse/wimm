@@ -22,14 +22,22 @@
   padding-top: 2.2%;
 }
 
+.navigation-home {
+  float: right;
+}
+
 .dashboard_field {
   width: 100%;
 }
 
-.center {
+.center-account {
   text-align: center;
+  margin-right: 28%
 }
 
+.tab-navigation {
+  margin: 0px 0px 2% 4% !important;
+}
 
 .records_table {
   line-height: 70%;
@@ -38,12 +46,6 @@
 
 .records_table_head {
   margin: 1% 0% 2% 3%;
-}
-
-.dashboard_records {
-  border: 2px;
-  border-style: solid;
-  border-color: darkgrey;
 }
 
 .amount_field {
@@ -60,14 +62,30 @@
 }
 
 .dashboard_records {
-  border: 2px;
-  border-style: solid;
-  border-color: darkgrey;
+  border-radius: 5px;
+  border: 1px solid #bbb;
   margin-left: 12%;
+
 }
 
 .dashboard_pie_chart {
   margin-left: -8% !important;
+}
+
+.date-field {
+  border-radius: 5px;
+  height: 34px;
+  padding-left: 1%;
+  border: 1px solid #bbb;
+}
+
+.date-filter{
+  text-align: center;
+}
+
+.filters-link {
+  margin-top: 3%;
+  text-align: center;
 }
 
 td {

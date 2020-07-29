@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = Account::Create.call(account_params, current_user)
+    @account = CreateAccountService.call(account_params, current_user)
 
     if @account.persisted?
       redirect_to accounts_path, notice: 'Account has been created'

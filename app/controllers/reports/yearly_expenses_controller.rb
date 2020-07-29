@@ -6,6 +6,8 @@ module Reports
 
     helper_method :start_period, :end_period
 
+    def show; end
+
     private
 
     def start_period

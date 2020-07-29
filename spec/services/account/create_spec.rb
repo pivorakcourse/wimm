@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account::Create do
+RSpec.describe CreateAccountService do
   let(:current_user) { User.create(email: 'test@test.com', password: 'password') }
   let(:valid_params) { { name: 'NewAccount' } }
   let(:invalid_params) { { name: '' } }

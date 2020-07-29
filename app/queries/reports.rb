@@ -2,7 +2,7 @@
 
 module Reports
   class CategoryReportsQuery
-    include WithdrawAndTransfer
+    include ExpenseAndTransfer
 
     def initialize(user)
       @user = user
@@ -13,7 +13,7 @@ module Reports
             .where('DATE(created_at) >= ? AND DATE(created_at) <= ?', start_period, end_period)
             .group('category')
             .sum('amount').each_with_object({}) do |(category, amount), acum|
-        acum[category.name] = amount if transfer?(category) && withdraw?(category)
+        acum[category.name] = amount if transfer?(category) && expense?(category)
       end
     end
 
@@ -22,7 +22,7 @@ module Reports
             .where('DATE(created_at) >= ? AND DATE(created_at) <= ?', start_period, end_period)
             .group('category')
             .sum('amount').each_with_object({}) do |(category, amount), acum|
-        acum[category.name] = -amount if transfer?(category) && withdraw?(category)
+        acum[category.name] = -amount if transfer?(category) && expense?(category)
       end
     end
 

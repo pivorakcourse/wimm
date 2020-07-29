@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module ReportsHelper
-  THIS_MONTH     = 'this month'
-  PREVIOUS_MONTH = 'previous month'
-  THIS_YEAR      = 'this year'
-  PREVIOUS_YEAR  = 'previous year'
+  THIS_MONTH     = 'This month'
+  PREVIOUS_MONTH = 'Previous month'
+  THIS_YEAR      = 'This year'
+  PREVIOUS_YEAR  = 'Previous year'
 
   def this_month_link(method)
     link_to THIS_MONTH,

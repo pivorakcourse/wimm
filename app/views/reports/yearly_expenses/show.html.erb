@@ -1,16 +1,14 @@
 <div calss='container'>
   <div class='row'>
     <div class='three columns'>
-      <ul><%= link_to 'Categorized expenses', reports_category_reports_path %></ul>
-      <ul><%= link_to 'Monthly balance' %></ul>
-      <ul><%= link_to 'Yearly expenses', yearly_expenses_reports_path %></ul>
+      <%= render 'reports/reports/navigation' %>
     </div>
     <div class='nine columns'>
       <div class="center">
-        <div>
-          <%= form_tag(yearly_expenses_reports_path, method: 'get') do %>
-            <%= date_field_tag(:from, start_period) %>
-            <%= date_field_tag(:to, end_period) %>
+        <div class='date-filter'>
+          <%= form_tag(reports_yearly_expenses_path, method: 'get') do %>
+            <%= date_field_tag :from, start_period, class: 'date-field' %>
+            <%= date_field_tag :to, end_period, class: 'date-field' %>
             <%= submit_tag("Filter") %>
           <% end %>
           <div width="500" height="500">
@@ -22,7 +20,7 @@
                   window.onload = function() {
                     var category_names = <%= @query.keys.inspect.html_safe %>;
                     var category_values = <%= @query.values %>;
-                    
+
                     var barChartData = {
                       labels: category_names,
                       datasets: [{
@@ -60,13 +58,13 @@
                 </script>
           </div>
       </div>
-      <div>
-        <%= this_month_link(:yearly_expenses_reports_path) %>
-        <%= previous_month_link(:yearly_expenses_reports_path) %>
+      <div class='filters-link'>
+        <%= this_month_link(:reports_yearly_expenses_path) %>
+        <%= previous_month_link(:reports_yearly_expenses_path) %>
       </div>
-      <div>
-        <%= this_year_link(:yearly_expenses_reports_path) %>
-        <%= previous_year_link(:yearly_expenses_reports_path)%>
+      <div class='filters-link'>
+        <%= this_year_link(:reports_yearly_expenses_path) %>
+        <%= previous_year_link(:reports_yearly_expenses_path)%>
       </div>
     </div>
   </div>

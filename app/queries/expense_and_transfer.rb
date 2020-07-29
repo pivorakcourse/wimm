@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module WithdrawAndTransfer
+module ExpenseAndTransfer
   def transfer?(category)
     (category.name != AccountTransferService::TRANSFER)
   end
 
-  def withdraw?(category)
+  def expense?(category)
     category.type != CreateRecordService::INCOME_CATEGORY
   end
 end
