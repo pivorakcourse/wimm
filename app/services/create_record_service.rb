@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RecordCreateService
+class CreateRecordService
   EXPENSE_CATEGORY = 'ExpenseCategory'
   INCOME_CATEGORY = 'IncomeCategory'
 

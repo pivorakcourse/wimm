@@ -1,0 +1,73 @@
+<div calss='container'>
+  <div class='row'>
+    <div class='three columns'>
+      <ul><%= link_to 'Categorized expenses', reports_category_reports_path %></ul>
+      <ul><%= link_to 'Monthly balance' %></ul>
+      <ul><%= link_to 'Yearly expenses', yearly_expenses_reports_path %></ul>
+    </div>
+    <div class='nine columns'>
+      <div class="center">
+        <div>
+          <%= form_tag(yearly_expenses_reports_path, method: 'get') do %>
+            <%= date_field_tag(:from, start_period) %>
+            <%= date_field_tag(:to, end_period) %>
+            <%= submit_tag("Filter") %>
+          <% end %>
+          <div width="500" height="500">
+
+            <% @query = Reports::CategoryReportsQuery.new(current_user).expenses_period_sum(start_period || Date.today.at_beginning_of_month, end_period || Date.today) %>
+
+             <canvas id="radarChart"></canvas>
+                <script>
+                  window.onload = function() {
+                    var category_names = <%= @query.keys.inspect.html_safe %>;
+                    var category_values = <%= @query.values %>;
+                    
+                    var barChartData = {
+                      labels: category_names,
+                      datasets: [{
+                          label: 'Expenses',
+                          borderColor: 'rgba(232, 3, 252, 0.5)',
+                          borderWidth: 2,
+                          data: category_values
+                      }]
+                    }
+                    var options = {
+                      maintainAspectRatio: true,
+                      spanGaps: false,
+                      elements: {
+                        line: {
+                          tension: 0.000001
+                        }
+                      },
+                      plugins: {
+                        filler: {
+                          propagate: false
+                        },
+                        'samples-filler-analyser': {
+                          target: 'chart-analyser'
+                        }
+                      }
+                    };
+                    Chart.defaults.scale.ticks.beginAtZero = true;
+                    var ctx = document.getElementById('radarChart');
+                    var myChart = new Chart(ctx, {
+                      type: 'radar',
+                      data: barChartData,
+                      options: options
+                    });
+                  }
+                </script>
+          </div>
+      </div>
+      <div>
+        <%= this_month_link(:yearly_expenses_reports_path) %>
+        <%= previous_month_link(:yearly_expenses_reports_path) %>
+      </div>
+      <div>
+        <%= this_year_link(:yearly_expenses_reports_path) %>
+        <%= previous_year_link(:yearly_expenses_reports_path)%>
+      </div>
+    </div>
+  </div>
+</div>

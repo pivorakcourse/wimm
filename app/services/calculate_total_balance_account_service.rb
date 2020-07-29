@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BalanceCalculateService
+class CalculateTotalBalanceAccountService
   attr_reader :account, :amount, :balance
 
   def initialize(record)

@@ -12,8 +12,8 @@ class AccountTransferService
 
   def call
     ApplicationRecord.transaction do
-      RecordCreateService.new(expense_params, user).call
-      RecordCreateService.new(income_params, user).call
+      CreateRecordService.new(expense_params, user).call
+      CreateRecordService.new(income_params, user).call
     end
   end
 

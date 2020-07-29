@@ -50,7 +50,7 @@ RSpec.describe 'Account' do
 
       expect(account_cash.reload.balance).to eq(transfer)
       expect(account.reload.balance).to eq(-transfer)
-      expect(TotalBalanceService.new(user).call).to eq(0)
+      expect(CalculateUserTotalBalanceService.new(user).call).to eq(0)
     end
   end
 end

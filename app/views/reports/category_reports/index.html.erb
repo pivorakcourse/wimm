@@ -2,7 +2,8 @@
 
   <div class="three columns">
     <ul><%= link_to 'Categorized expenses', reports_category_reports_path %></ul>
-    <ul><%= link_to 'Sum by month' %></ul>
+    <ul><%= link_to 'Monthly balance' %></ul>
+    <ul><%= link_to 'Yearly expenses', yearly_expenses_reports_path %></ul>
   </div>
 
   <div class="nine columns">
@@ -18,12 +19,12 @@
         <%= pie_chart Reports::CategoryReportsQuery.new(current_user).period_sum(start_period || Date.today.at_beginning_of_month, end_period || Date.today), defer: false %>
       </div>
       <div>
-        <%= this_month_link %>
-        <%= previous_month_link %>
+        <%= this_month_link(:reports_category_reports_path) %>
+        <%= previous_month_link(:reports_category_reports_path) %>
       </div>
       <div>
-        <%= this_year_link %>
-        <%= previous_year_link %>
+        <%= this_year_link(:reports_category_reports_path) %>
+        <%= previous_year_link(:reports_category_reports_path) %>
       </div>
     </div>
   </div>

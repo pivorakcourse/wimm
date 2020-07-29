@@ -13,6 +13,6 @@ class Record < ApplicationRecord
   private
 
   def balance_update
-    account.update(balance: BalanceCalculateService.new(self).call)
+    account.update(balance: CalculateTotalBalanceAccountService.new(self).call)
   end
 end

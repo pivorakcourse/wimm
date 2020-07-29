@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Reports::CategoryReportsQuery do
-  let!(:user)      { create(:user) }
-  let!(:account)   { create(:account, user_id: user.id) }
-  let!(:category)  { create(:category, user_id: user.id) }
+  let!(:user)             { create(:user) }
+  let!(:account)          { create(:account, user_id: user.id) }
+  let!(:category)         { create(:category, user_id: user.id) }
+  let!(:income_category)  { create(:category, :income_category, user_id: user.id) }
   let!(:record_this_month) do
     create(
       :record,
@@ -66,6 +67,14 @@ RSpec.describe Reports::CategoryReportsQuery do
                    .period_sum(Date.today.at_beginning_of_year.last_year, Date.today.at_end_of_year.last_year)
   end
 
+  subject(:expenses_query) do
+    described_class.new(user)
+                   .expenses_period_sum(
+                     Date.today.at_beginning_of_year.last_year,
+                     Date.today.at_end_of_year.last_year
+                   )
+  end
+
   describe 'got expected sum' do
     it 'returns expected sum of this month' do
       expect(query_this_month.size).to eq(1)
@@ -86,6 +95,11 @@ RSpec.describe Reports::CategoryReportsQuery do
     it 'returns expected sum of previous year' do
       expect(query_previous_year.size).to eq(1)
       expect(query_previous_year[category.name]).to eq(record_previous_year.amount)
+    end
+
+    it 'returns expected sum for expenses' do
+      expect(expenses_query.size).to eq(1)
+      expect(expenses_query[category.name]).to eq(-record_previous_year.amount)
     end
   end
 end
