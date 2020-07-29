@@ -11,7 +11,10 @@ Rails.application.routes.draw do
       put :favorite, to: 'favorite_category#update'
     end
 
-    resources :accounts
+    resources :accounts do
+      put :favorite, to: 'favorite_account#update'
+    end
+
     resources :records
     resources :transfers, only: :create
     namespace :reports do

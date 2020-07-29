@@ -1,4 +1,6 @@
 <h5>Edit account</h5>
 
 <%= render 'form', account: @account %>
+
+<%= maybe_make_favorite_account_link(@category) %>
 <td> <%= delete_account_button(@account) %></td>
