@@ -6,7 +6,8 @@ RSpec.describe Reports::ColumnChartQuery do
   let!(:user)               { create(:user) }
   let!(:account)            { create(:account, user_id: user.id) }
   let!(:income_category)    { create(:category, user_id: user.id, type: 'IncomeCategory') }
-  let!(:expense_category)  { create(:category, user_id: user.id, type: 'ExpenseCategory') }
+  let!(:expense_category)   { create(:category, user_id: user.id, type: 'ExpenseCategory') }
+  let!(:transfer_category)  { create(:category, user_id: user.id, type: 'ExpenseCategory', name: 'Transfer') }
   let!(:record_this_month) do
     create(
       :record,
@@ -14,6 +15,16 @@ RSpec.describe Reports::ColumnChartQuery do
       account:    account,
       user:       user,
       created_at: Date.today
+    )
+  end
+
+  let!(:transfer_record_previous_month) do
+    create(
+      :record,
+      category:   transfer_category,
+      account:    account,
+      user:       user,
+      created_at: Date.today.at_beginning_of_month.last_month
     )
   end
 

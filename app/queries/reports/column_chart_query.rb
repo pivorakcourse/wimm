@@ -11,11 +11,12 @@ module Reports
       @records = Record.joins(:category)
       @months = []
       @sum_amount = []
+      @category = Category.all
     end
 
     def income_records
       filter_record
-      @income_records ||= records.where("categories.type = 'IncomeCategory'")
+      @income_records ||= records.where("categories.type = 'IncomeCategory' AND categories.name != 'Transfer'")
                                  .group_by_month('created_at')
                                  .sum('amount')
 
@@ -27,7 +28,7 @@ module Reports
 
     def expense_records
       filter_record
-      @expense_records ||= records.where("categories.type = 'ExpenseCategory'")
+      @expense_records ||= records.where("categories.type = 'ExpenseCategory' AND categories.name != 'Transfer'")
                                   .group_by_month('created_at')
                                   .sum('amount')
 

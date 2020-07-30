@@ -17,7 +17,6 @@
 
              <canvas id="radarChart"></canvas>
                 <script>
-                  window.onload = function() {
                     var category_names = <%= @query.keys.inspect.html_safe %>;
                     var category_values = <%= @query.values %>;
 
@@ -47,6 +46,7 @@
                         }
                       }
                     };
+                    document.addEventListener("turbolinks:load", function() {
                     Chart.defaults.scale.ticks.beginAtZero = true;
                     var ctx = document.getElementById('radarChart');
                     var myChart = new Chart(ctx, {
@@ -54,7 +54,7 @@
                       data: barChartData,
                       options: options
                     });
-                  }
+                  })
                 </script>
           </div>
       </div>

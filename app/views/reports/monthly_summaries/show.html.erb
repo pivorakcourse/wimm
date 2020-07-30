@@ -33,13 +33,13 @@
             data: sum_amount_expense
           }]
         };
-        window.onload = function() {
+        document.addEventListener("turbolinks:load", function() {
           var ctx = document.getElementById('expenseIncomeBarChart');
           var expenseIncomeBarChart = new Chart(ctx, {
             type: 'bar',
             data: barChartData,
           });
-        }
+        })
       </script>
       <div class='filters-link'>
         <%= this_year_link(:reports_monthly_summary_path) %>
