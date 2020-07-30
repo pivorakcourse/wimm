@@ -48,7 +48,7 @@
 
 <div class="row">
   <div class="one-half column dashboard_pie_chart">
-    <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses', defer: true %>
+    <%= pie_chart AmountSumQuery.new(current_user).amount_sum_series, title: 'Last 30 days expenses', defer: false %>
   </div>
 
   <div class="one-half column dashboard_records">

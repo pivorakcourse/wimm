@@ -41,7 +41,7 @@
 
 .records_table {
   line-height: 70%;
-  margin-left: 8%;
+  margin-left: 5%;
 }
 
 .records_table_head {
@@ -50,11 +50,6 @@
 
 .amount_field {
   width: 68%;
-}
-
-.records_table {
-  line-height: 70%;
-  margin-left: 8%;
 }
 
 .records_table_head {
