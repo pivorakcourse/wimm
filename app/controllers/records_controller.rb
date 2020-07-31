@@ -37,7 +37,10 @@ class RecordsController < ApplicationController
 
   def destroy
     @record = current_user.records.find(params[:id])
-    redirect_to records_path, notice: 'Record has been deleted' if @record.destroy
+
+    DestroyRecordService.new(@record, current_user).call
+
+    redirect_to records_path, notice: 'Record has been deleted'
   end
 
   private
