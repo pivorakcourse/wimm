@@ -16,7 +16,7 @@
       <script>
         var sum_amount_income = <%= @income_report.sum_amount.inspect.html_safe %>
         var sum_amount_expense = <%= @expense_report.sum_amount.inspect.html_safe %>
-        var month = <%= @income_report.months.inspect.html_safe %>;
+        var month = <%= @income_report.months.inspect.html_safe && @expense_report.months.inspect.html_safe %>;
         var barChartData = {
           labels: month,
           datasets: [{
@@ -38,6 +38,15 @@
           var expenseIncomeBarChart = new Chart(ctx, {
             type: 'bar',
             data: barChartData,
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            },
           });
         })
       </script>
