@@ -28,11 +28,17 @@ class RecordsController < ApplicationController
   def update
     @record = current_user.records.find(params[:id])
 
-    if @record.update(record_params)
+    if UpdateRecordService.new(@record, params[:id], current_user)
+      binding.pry
       redirect_to records_path, notice: 'Record has been updated'
-    else
+      else
       redirect_to edit_record_path, notice: 'Record can`t be string and record can`t be zero'
     end
+    # if @record.update(record_params)
+    #   redirect_to records_path, notice: 'Record has been updated'
+    # else
+    #   redirect_to edit_record_path, notice: 'Record can`t be string and record can`t be zero'
+    # end
   end
 
   def destroy

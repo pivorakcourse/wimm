@@ -1,29 +1,31 @@
-class CreateRecordService
+class UpdateRecordService
 
   attr_reader :params, :record
 
-  def initialize(record, params, user)
-    @params = params
-    @record = user.records.build(params)
+  def initialize(record, record_params, user)
+    @record_params = record_params
+    @record = record
+    @user = user
   end
 
   def call
-    case record.category.type
-    when CreateRecordService::EXPENSE_CATEGORY
-      expense
-    when CreateRecordService::INCOME_CATEGORY
-      income
+    record_category_type = record.category.type
+    record.update(record_params) if transfer?(record_category_type)
+
+    records = TransferRecordsQuery.new(user, record).related_transfer_records
+    binding.pry
+    records.each_with_object do |record|
+      if record.category.type == CreateRecordService::EXPENSE_CATEGORY
+        record.update!(record_params[amount: -new_amount])
+      else
+        record.update!(record_params[amount: new_amount])
+      end
     end
-    record
   end
 
   private
 
-  def expense
-    record.update(amount: -record.amount)
-  end
-
-  def income
-    record.update(amount: record.amount)
+  def transfer?(type)
+    record_category_type == AccountTransferService::TRANSFER
   end
 end
