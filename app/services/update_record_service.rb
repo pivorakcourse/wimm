@@ -1,24 +1,33 @@
 class UpdateRecordService
 
-  attr_reader :params, :record
+  attr_reader :new_amount, :record, :user
 
-  def initialize(record, record_params, user)
-    @record_params = record_params
+  def initialize(record, new_amount, user)
+    # binding.pry
+    @new_amount = new_amount
     @record = record
     @user = user
   end
 
   def call
-    record_category_type = record.category.type
-    record.update(record_params) if transfer?(record_category_type)
-
-    records = TransferRecordsQuery.new(user, record).related_transfer_records
-    binding.pry
-    records.each_with_object do |record|
-      if record.category.type == CreateRecordService::EXPENSE_CATEGORY
-        record.update!(record_params[amount: -new_amount])
-      else
-        record.update!(record_params[amount: new_amount])
+    unless transfer?(record.category.name)
+      record.update!({'amount' => new_amount})
+    else
+      records = TransferRecordsQuery.new(user, record).related_transfer_records
+      first_record = records[0]
+      second_record = records[1]
+      binding.pry
+      case first_record.category.type
+      when CreateRecordService::EXPENSE_CATEGORY
+        ApplicationRecord.transaction do
+          first_record.update!({'amount' => "-#{new_amount}"})
+          second_record.update!({'amount' => new_amount})
+         end
+      when CreateRecordService::INCOME_CATEGORY
+        ApplicationRecord.transaction do
+          first_record.update!({'amount' => new_amount})
+          second_record.update!({'amount' => "-#{new_amount}"})
+        end
       end
     end
   end
@@ -26,6 +35,6 @@ class UpdateRecordService
   private
 
   def transfer?(type)
-    record_category_type == AccountTransferService::TRANSFER
+    record.category.name == AccountTransferService::TRANSFER
   end
 end

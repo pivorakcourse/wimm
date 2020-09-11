@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe UpdateRecordService do
-  let!(:user)     { create(:user) }
-  let!(:account)  { create(:account, :with_money, user_id: user.id) }
-  let!(:account2) { create(:account, name: 'Mono', user_id: user.id) }
-  let!(:category) { create(:category, user_id: user.id) }
+  let!(:user)       { create(:user) }
+  let!(:account)    { create(:account, :with_money, user_id: user.id) }
+  let!(:account2)   { create(:account, name: 'Mono', user_id: user.id) }
+  let!(:category)   { create(:category, user_id: user.id) }
+  let(:amount)      { "200.0" }
   let!(:record) do
     create(
       :record,
@@ -42,27 +43,19 @@ RSpec.describe UpdateRecordService do
     ).call
   end
 
-  let!(:new_amount) { 200 }
-
   it 'successfully update record' do
-    expect do
-      described_class.call(user.records.last, record_params, current_user)
-    end.to change { Account.count }.from(0).to(1)
-    expect(created_account.name).to eq valid_params[:name]
+    # binding.pry
+    described_class.new(user.records.last, amount, user).call
+    expect(user.records.last.reload.amount).to eq(amount.to_f)
+    expect(user.records.second_to_last.reload.amount).to eq(-amount.to_f)
+    expect(user.balance).to_be eq(100.0)
   end
 
-  it 'successfully update transfer records' do
-    expect do
-      described_class.call(valid_params, current_user)
-    end.to change { Account.count }.from(0).to(1)
-    expect(created_account.name).to eq valid_params[:name]
-  end
+  # it 'do not update transfer records' do
+    
+  # end
 
-  it 'failure with errors' do
-    expect do
-      described_class.call(invalid_params, current_user)
-    end.not_to change { Account.count }
+  # it 'failure with errors' do
 
-    expect(created_account).to eq nil
-  end
+  # end
 end
