@@ -7,14 +7,14 @@ RSpec.describe UpdateRecordService do
   let!(:account)    { create(:account, :with_money, user_id: user.id) }
   let!(:account2)   { create(:account, name: 'Mono', user_id: user.id) }
   let!(:category)   { create(:category, user_id: user.id) }
-  let(:amount)      { "200.0" }
+  let(:amount)      { { 'amount' => 200.0 } }
   let!(:record) do
     create(
       :record,
       category:   category,
       account:    account,
       user:       user,
-      created_at: Date.today
+      created_at: Date.today - 1.day
     )
   end
 
@@ -42,20 +42,16 @@ RSpec.describe UpdateRecordService do
       user:     user
     ).call
   end
+  subject(:records) { user.records.where.not(id: record.id) }
 
-  it 'successfully update record' do
-    # binding.pry
-    described_class.new(user.records.last, amount, user).call
-    expect(user.records.last.reload.amount).to eq(amount.to_f)
-    expect(user.records.second_to_last.reload.amount).to eq(-amount.to_f)
-    expect(user.balance).to_be eq(100.0)
+  it 'successfully update transfer records' do
+    described_class.new(subject.first, amount, user).call
+    expect(subject.reload.first.amount).to eq(-amount['amount'])
+    expect(subject.last.amount).to eq(amount['amount'])
   end
 
-  # it 'do not update transfer records' do
-    
-  # end
-
-  # it 'failure with errors' do
-
-  # end
+  it 'successfully update record' do
+    described_class.new(user.records.first, amount, user).call
+    expect(user.records.first.amount).to eq(amount['amount'])
+  end
 end
