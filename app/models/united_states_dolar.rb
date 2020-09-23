@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class UnitedStatesDolar < Accoun
+class UnitedStatesDolar < Account
 end
