@@ -47,6 +47,6 @@ class AccountsController < BaseController
   private
 
   def account_params
-    params.require(:account).permit(:name, :balance)
+    params.require(:account).permit(:name, :balance, :currency_code)
   end
 end

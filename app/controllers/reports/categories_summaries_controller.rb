@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Reports
-  class CategoriesSummariesController < ApplicationController
-    before_action :authenticate_user!
-
+  class CategoriesSummariesController < BaseController
     helper_method :start_period, :end_period
 
     private

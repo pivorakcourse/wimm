@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rewrite all services for base_service
 class AccountTransferService
   TRANSFER = 'Transfer'
 

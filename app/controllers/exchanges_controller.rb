@@ -3,7 +3,5 @@
 class ExchangesController < ApplicationController
   private
 
-  def exchange_rate
-    
-  end
+  def exchange_rate; end
 end

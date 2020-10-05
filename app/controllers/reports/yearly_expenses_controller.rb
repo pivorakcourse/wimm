@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Reports
-  class YearlyExpensesController < ApplicationController
-    before_action :authenticate_user!
-
+  class YearlyExpensesController < BaseController
     helper_method :start_period, :end_period
 
     def show; end

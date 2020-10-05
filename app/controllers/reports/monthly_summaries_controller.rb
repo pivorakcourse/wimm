@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Reports
-  class MonthlySummariesController < ApplicationController
-    before_action :authenticate_user!
-
+  class MonthlySummariesController < BaseController
     def show
       @from = params[:from]
       @to = params[:to]
