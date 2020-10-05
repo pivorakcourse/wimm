@@ -18,11 +18,11 @@ ActiveRecord::Schema.define(version: 2020_07_28_091613) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.decimal "balance", default: "0.0", null: false
-    t.string "type", default: "UkrainianHryvnia", null: false
+    t.string "currency_code", default: "UAH", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["type"], name: "index_accounts_on_type"
+    t.index ["currency_code"], name: "index_accounts_on_currency_code"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 

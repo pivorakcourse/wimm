@@ -16,6 +16,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
+gem 'money', '~> 6.13', '>= 6.13.8'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
