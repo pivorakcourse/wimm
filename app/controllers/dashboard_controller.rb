@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class DashboardController < ApplicationController
-  before_action :authenticate_user!
-
+class DashboardController < BaseController
   helper_method :accounts, :record, :records, :total_balance, :income_categories,
                 :expense_categories, :favorite_category_id, :favorite_account_id
 

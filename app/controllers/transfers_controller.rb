@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class TransfersController < ApplicationController
-  before_action :authenticate_user!
-
+class TransfersController < BaseController
   def create
     AccountTransferService.new(
       from:     transfer_params[:from_account_id],

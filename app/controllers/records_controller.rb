@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class RecordsController < ApplicationController
+class RecordsController < BaseController
   include Pagy::Backend
-
-  before_action :authenticate_user!
 
   def index
     @pagy, @records = pagy(current_user.records.includes(:account, :category))

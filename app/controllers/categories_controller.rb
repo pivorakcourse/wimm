@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class CategoriesController < ApplicationController
-  before_action :authenticate_user!
-
+class CategoriesController < BaseController
   def index
     @categories = Category.where(user: current_user)
     @expense_categories = ExpenseCategory.where(user: current_user).exclude_transfer
